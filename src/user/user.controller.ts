@@ -6,4 +6,5 @@ export class UserController {
   async getAllUsers() {
     return JSON.stringify({ test: 'abc' });
   }
+  // @Post
 }
