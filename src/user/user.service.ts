@@ -1,35 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './interfaces/user.interface';
-import { CreateUserDto } from './dtos/createUser.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
-import { randomUser } from 'random-user-data';
+import { CreateUserDto } from './dtos/createUser.dto';
+// import { randomUser } from 'random-user-data';
+import { Repository } from 'typeorm';
+import { UserEntity } from './interfaces/user.entity';
 
 @Injectable()
 export class UserService {
-  private userList: User[] = [];
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly userRepository: Repository<UserEntity>,
+  ) {}
+
+  async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
     // Password encrypt
-
-    const newUser = randomUser('f', 19, 40);
-
     const saltOrRounds = 10;
     const passwordHashed = await hash(createUserDto.password, saltOrRounds);
 
-    // creating user obj
-    const user: User = {
-      ...newUser,
-      cpf: '21301312',
-      id: this.userList.length + 1,
+    return this.userRepository.save({
+      ...createUserDto,
       password: passwordHashed,
-    };
-
-    // pushing into userList[]
-    this.userList.push(user);
-
-    return user;
+    });
   }
 
-  async getAllUser(): Promise<User[]> {
-    return this.userList;
+  async getAllUser(): Promise<UserEntity[]> {
+    return this.userRepository.find();
   }
 }
