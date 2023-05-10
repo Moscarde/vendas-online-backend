@@ -13,6 +13,7 @@ import { InsertInnCity1683683289798 } from './migration/1683683289798-insert-inn
 import { StateModule } from './state/state.module';
 import { CityModule } from './city/city.module';
 import { AddressModule } from './address/address.module';
+import { StateEntity } from './state/entities/state.entity';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { AddressModule } from './address/address.module';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
-      entities: [UserEntity],
+      entities: [UserEntity, StateEntity],
       migrations: [
         CreateTableUser1683599867947,
         CreateTableAdress1683602548748,
