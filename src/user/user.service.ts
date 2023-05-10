@@ -4,7 +4,7 @@ import { hash } from 'bcrypt';
 import { CreateUserDto } from './dtos/createUser.dto';
 // import { randomUser } from 'random-user-data';
 import { Repository } from 'typeorm';
-import { UserEntity } from './interfaces/user.entity';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
