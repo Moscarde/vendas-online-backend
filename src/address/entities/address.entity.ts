@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity({ name: 'address' })
-export class UserEntity {
+export class AddressEntity {
   @PrimaryGeneratedColumn('rowid')
   id: number;
 
@@ -18,7 +18,7 @@ export class UserEntity {
   complement: string;
 
   @Column({ name: 'number', nullable: false })
-  numberAdress: number;
+  numberAddress: number;
 
   @Column({ name: 'cep', nullable: false })
   cep: string;
