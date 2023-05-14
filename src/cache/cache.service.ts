@@ -16,10 +16,8 @@ export class CacheService {
       return allData;
     }
 
-    const cities: T = await functionRequest();
-
-    await this.cacheManager.set(key, cities);
-
-    return cities;
+    const data = await functionRequest();
+    this.cacheManager.set(key, data);
+    return data;
   }
 }
