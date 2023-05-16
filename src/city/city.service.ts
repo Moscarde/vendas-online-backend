@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CacheService } from 'src/cache/cache.service';
 import { Repository } from 'typeorm';
 import { CityEntity } from './entities/city.entity';
-import { CacheService } from 'src/cache/cache.service';
 
 @Injectable()
 export class CityService {
@@ -31,7 +31,7 @@ export class CityService {
     });
 
     if (!city) {
-      throw new NotFoundException(`CityId: ${cityId} Not Found`);
+      throw new NotFoundException(`CityId: ${cityId} not found.`);
     }
 
     return city;

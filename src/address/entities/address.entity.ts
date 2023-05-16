@@ -1,3 +1,4 @@
+import { CityEntity } from 'src/city/entities/city.entity';
 import { UserEntity } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -39,7 +40,7 @@ export class AddressEntity {
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user?: UserEntity;
 
-  @ManyToOne(() => UserEntity, (city) => city.addresses)
+  @ManyToOne(() => CityEntity, (city) => city.addresses)
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
-  city?: UserEntity;
+  city?: CityEntity;
 }

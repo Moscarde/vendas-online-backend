@@ -1,6 +1,5 @@
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { Injectable, Inject } from '@nestjs/common';
 
 @Injectable()
 export class CacheService {
@@ -16,8 +15,10 @@ export class CacheService {
       return allData;
     }
 
-    const data = await functionRequest();
-    this.cacheManager.set(key, data);
-    return data;
+    const cities: T = await functionRequest();
+
+    await this.cacheManager.set(key, cities);
+
+    return cities;
   }
 }
