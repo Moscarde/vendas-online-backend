@@ -11,6 +11,7 @@ import { CreateUserDto } from './dtos/createUser.dto';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './user.service';
 import { ReturnUserDto } from './dtos/returnUser.dto';
+import { ReturnAddressDto } from 'src/address/dtos/returnAddress.dto';
 
 @Controller('user')
 export class UserController {
@@ -33,7 +34,9 @@ export class UserController {
   }
 
   @Get('/:userId')
-  async getUserById(@Param('userId') userId: number) {
-    return this.userService.getUserByIdUsingRelations(userId)
+  async getUserById(@Param('userId') userId: number): Promise<ReturnUserDto> {
+    return new ReturnUserDto(
+      await this.userService.getUserByIdUsingRelations(userId),
+    );
   }
 }

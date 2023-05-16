@@ -1,15 +1,15 @@
-// import { AddressEntity } from '../entities/address.entity';
+import { AddressEntity } from '../entities/address.entity';
 
-// export class ReturnAddressDto {
-//   id: number;
-//   userId: number;
-//   complement: string;
-//   numberAdress: number;
-//   cep: string;
-//   cityId: number;
+export class ReturnAddressDto {
+  complement: string;
+  numberAdress: number;
+  cep: string;
+  cityId: number;
+  //   city?: any;
 
-//   constructor (addressEntity: AddressEntity) {
-//     this.id: number;
-
-//   }
-// }
+  constructor(address: AddressEntity) {
+    this.complement = address.complement;
+    this.numberAdress = address.numberAddress;
+    this.cep = address.cep;
+  }
+}
